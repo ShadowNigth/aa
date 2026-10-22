@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#d5e9dc" />
+    <meta name="description" content="Un mundo de bloques para explorar, construir y crear." />
+    <title>Bloque — tu mundo, tus reglas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <div class="world" id="world">
+        <div class="world-wash"></div>
+        <div class="topbar">
+          <a class="brand" href="#" aria-label="Bloque, inicio">
+            <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
+            <span class="brand-name">bloque<span class="brand-dot">.</span></span>
+            <span class="brand-divider"></span><span class="edition">CREATIVE / 01</span>
+          </a>
+          <div class="top-center"><span class="live-dot"></span> MUNDO EN LÍNEA <span class="top-sep">/</span> <span id="clock">DÍA 01 · 09:41</span></div>
+          <div class="top-actions">
+            <button class="save-world" id="saveWorld" title="Descargar una copia de tu mundo"><svg viewBox="0 0 24 24"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 16v4h14v-4"/></svg><span>Guardar mundo</span></button>
+            <button class="icon-button sound-toggle" aria-label="Activar o desactivar sonido" title="Sonido"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+            <button class="avatar" title="Perfil: Alex">A</button>
+            <input id="loadWorld" type="file" accept="application/json,.json" hidden />
+          </div>
+        </div>
+
+        <section class="world-info">
+          <div class="eyebrow"><span class="eyebrow-line"></span> TU ESPACIO PARA CREAR</div>
+          <h1>Un mundo<br />a tu <span>manera.</span></h1>
+          <p>Sin prisa. Sin límites.<br />Solo bloques y un poco de imaginación.</p>
+          <div class="world-stats">
+            <div class="stat"><span class="stat-icon leaf-icon">✳</span><span><b>Pradera</b><small>BIOMA ACTUAL</small></span></div>
+            <span class="stat-divider"></span>
+            <div class="stat"><span class="stat-icon sun-icon">◉</span><span><b>22° <small class="weather-label">Despejado</small></b><small>CLIMA</small></span></div>
+          </div>
+          <div class="coord">X <b>128</b> &nbsp; Y <b>64</b> &nbsp; Z <b>−42</b></div>
+        </section>
+
+        <div class="scene-tag"><span class="tag-icon">◫</span><span><b>ISLA DEL AMANECER</b><small>SEMILLA #847201</small></span><button aria-label="Más información">↗</button></div>
+
+        <aside class="quest-card">
+          <div class="quest-top"><span class="quest-icon">✦</span><span>PEQUEÑO COMIENZO</span><button aria-label="Ocultar misión" id="hideQuest">−</button></div>
+          <h2>Tu primera aventura</h2>
+          <p>Un mundo nuevo empieza con un primer bloque.</p>
+          <div class="quest-progress"><span></span></div>
+          <div class="quest-foot"><span>PROGRESO</span><b>1 DE 3</b></div>
+        </aside>
+
+        <div class="minimap" aria-label="Minimapa">
+          <div class="map-grid"></div><div class="map-land"><i></i><i></i><i></i><i></i></div><span class="map-player">▲</span><span class="map-north">N</span>
+          <div class="map-caption"><span>◉</span> ISLA DEL AMANECER <span class="map-zoom">+</span></div>
+        </div>
+
+        <div class="hint"><span class="hint-key">DRAG</span> explorar <span class="hint-dot">·</span> <span class="hint-key">CLICK</span> romper <span class="hint-dot">·</span> <span class="hint-key">SHIFT + CLICK</span> colocar</div>
+        <div class="bottom-ui">
+          <div class="tool-tip"><span id="selectedName">Bloque de césped</span><span class="tip-key">1</span></div>
+          <div class="hotbar" role="toolbar" aria-label="Inventario de bloques">
+            <button class="slot selected" data-name="Bloque de césped" aria-label="Bloque de césped, tecla 1"><span class="block block-grass"><i></i></span><small>1</small></button>
+            <button class="slot" data-name="Tierra" aria-label="Tierra, tecla 2"><span class="block block-dirt"><i></i></span><small>2</small></button>
+            <button class="slot" data-name="Piedra" aria-label="Piedra, tecla 3"><span class="block block-stone"><i></i></span><small>3</small></button>
+            <button class="slot" data-name="Madera de roble" aria-label="Madera de roble, tecla 4"><span class="block block-wood"><i></i></span><small>4</small></button>
+            <button class="slot" data-name="Hojas" aria-label="Hojas, tecla 5"><span class="block block-leaves"><i></i></span><small>5</small></button>
+            <button class="slot" data-name="Arena" aria-label="Arena, tecla 6"><span class="block block-sand"><i></i></span><small>6</small></button>
+            <button class="slot" data-name="Agua" aria-label="Agua, tecla 7"><span class="block block-water"><i></i></span><small>7</small></button>
+            <button class="slot" data-name="Flor silvestre" aria-label="Flor silvestre, tecla 8"><span class="flower-block">✿</span><small>8</small></button>
+            <button class="inventory-button" aria-label="Abrir inventario" title="Inventario"><svg viewBox="0 0 24 24"><path d="M4 7h16l1 13H3L4 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></button>
+          </div>
+          <div class="bottom-caption"><span class="tiny-cross">✣</span> CREATIVO <span class="bottom-divider"></span> <span>CONSTRUYE LO QUE IMAGINES</span></div>
+        </div>
+        <div class="crosshair" aria-hidden="true"><i></i><b></b></div>
+        <section class="inventory-panel" id="inventoryPanel" aria-label="Inventario creativo" hidden>
+          <div class="inventory-head"><span><b>Inventario creativo</b><small>ELIGE UN BLOQUE PARA CONSTRUIR</small></span><button id="closeInventory" aria-label="Cerrar inventario">×</button></div>
+          <div class="inventory-grid">
+            <button data-item="0"><span class="inventory-swatch sw-grass"></span>Césped <small>∞</small></button>
+            <button data-item="1"><span class="inventory-swatch sw-dirt"></span>Tierra <small>∞</small></button>
+            <button data-item="2"><span class="inventory-swatch sw-stone"></span>Piedra <small>∞</small></button>
+            <button data-item="3"><span class="inventory-swatch sw-wood"></span>Roble <small>∞</small></button>
+            <button data-item="4"><span class="inventory-swatch sw-leaves"></span>Hojas <small>∞</small></button>
+            <button data-item="5"><span class="inventory-swatch sw-sand"></span>Arena <small>∞</small></button>
+            <button data-item="6"><span class="inventory-swatch sw-water"></span>Agua <small>∞</small></button>
+            <button data-item="7"><span class="inventory-swatch sw-flower"></span>Flor <small>∞</small></button>
+          </div>
+          <button class="import-world" id="importWorld">↥ &nbsp; Importar un mundo guardado</button>
+        </section>
+        <div class="toast" id="toast"></div>
+      </div>
+    </main>
+  </body>
+</html>
